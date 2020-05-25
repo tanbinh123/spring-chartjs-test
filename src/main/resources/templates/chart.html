@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<title>chart</title>
+</head>
+<body>
+    <canvas id="ChartDemo"></canvas>
+    <script type="text/javascript" th:inline="javascript">
+
+    var ctx = document.getElementById("ChartDemo").getContext('2d');
+    var ChartDemo = new Chart(ctx, {
+        type: 'line',
+        data: {
+            // labelsに横軸の時系列データを設定。
+            labels: [[${timeArray}]] ,
+            datasets: [
+                {
+                    label: "Chart-1",
+                    borderColor: 'rgb(0, 0, 255)',
+                    lineTension: 0,
+                    fill: false,
+                    // 計測値（テスト）を設定。
+                    data:[[ ${valueArray}]],
+                },
+            ]
+        },
+        //optionで時系列のtimeを指定
+        options: {
+            responsive: true,
+            type : 'time'
+        }
+    });
+
+    </script>
+</body>
+</html>
